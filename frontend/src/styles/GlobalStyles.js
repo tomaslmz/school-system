@@ -13,12 +13,7 @@ export default createGlobalStyle`
         font-family: Arial, Helvetica, sans-serif;
         background-color: ${primaryDarkColor};
 
-        width: 100vw;
-        height: 100vh;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 100%;
     }
 
     button {
@@ -43,8 +38,8 @@ export default createGlobalStyle`
 export const Container = styled.section`
     max-width: 360px;
     background-color: #fff;
-    margin: auto;
     padding: 30px;
+    margin: 30px auto;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
