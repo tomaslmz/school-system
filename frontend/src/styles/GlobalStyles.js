@@ -1,5 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { primaryColor, primaryDarkColor } from '../config/colors';
+import {
+    primaryColor,
+    primaryDarkColor,
+    primaryColorLight,
+} from '../config/colors';
 
 export default createGlobalStyle`
     * {
@@ -24,6 +28,11 @@ export default createGlobalStyle`
         font-weight: 700;
         border: none;
         border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: ${primaryColorLight};
+        cursor: pointer;
     }
 
     a {
