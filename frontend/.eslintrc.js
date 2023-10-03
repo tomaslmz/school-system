@@ -31,5 +31,6 @@ module.exports = {
         'import/no-extraneous-dependencies': 0,
         'react/prop-types': 0,
         'no-unused-vars': 0,
+        'no-case-declarations': 0,
     },
 };
