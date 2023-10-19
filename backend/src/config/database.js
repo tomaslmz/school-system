@@ -8,8 +8,8 @@ module.exports = {
   /* MySQL / MariaDB */
   // host: process.env.DATABASE_HOST,
   // port: process.env.DATABASE_PORT,
-  username: process.env.USER,
-  password: process.env.PASSWORD,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
   dialectOptions: {
     timezone: 'America/Sao_Paulo',
