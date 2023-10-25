@@ -32,5 +32,6 @@ module.exports = {
         'react/prop-types': 0,
         'no-unused-vars': 0,
         'no-case-declarations': 0,
+        'jsx-a11y/label-has-associated-control': 0,
     },
 };
