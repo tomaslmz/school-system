@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import * as types from '../types';
+import axios from '../../../services/axios';
 
 const initialState = {
     isButtonClicked: false,
@@ -15,10 +16,9 @@ export default function (state = initialState, action) {
             return newState;
 
         case types.CLICKED_BUTTON_FAILURE:
-            toast.error('ERROR');
+            delete axios.defaults.headers.Authorization;
             return state;
         case types.CLICKED_BUTTON_REQUEST:
-            console.log('REQUEST');
             return state;
         default:
             return state;

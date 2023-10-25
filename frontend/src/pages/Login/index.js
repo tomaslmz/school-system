@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Container } from '../../styles/GlobalStyles';
+import * as actions from '../../store/modules/login/actions';
 import { Title, Input, Form } from './styled';
 import * as exampleActions from '../../store/modules/example/actions';
 
@@ -14,9 +15,9 @@ export default function Login() {
 
     function handleClick(e) {
         e.preventDefault();
-        console.log(email);
-        console.log(password);
         // dispatch(exampleActions.isButtonClickedRequest());
+
+        dispatch(actions.isLoginRequest({ email, password }));
     }
 
     return (
