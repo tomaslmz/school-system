@@ -6,8 +6,12 @@ export const Title = styled.h1`
 
 export const Input = styled.input`
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #9e9e9e;
+    border-radius: 5px;
     height: 30px;
+    padding: 20px 10px;
+    margin-top: 5px;
+    font-size: 16px;
 `;
 
 export const Form = styled.form`

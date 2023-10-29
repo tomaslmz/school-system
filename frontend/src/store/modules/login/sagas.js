@@ -26,7 +26,7 @@ function* loginRequest({ payload }) {
 
         axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
     } catch (e) {
-        toast.error('Invalid email or password');
+        toast.error('Incorrect email or password');
         yield put(actions.isLoginFailure());
     }
 }

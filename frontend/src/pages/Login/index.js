@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
 import * as actions from '../../store/modules/login/actions';
 import { Title, Input, Form } from './styled';
-import * as exampleActions from '../../store/modules/example/actions';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -17,7 +17,23 @@ export default function Login() {
         e.preventDefault();
         // dispatch(exampleActions.isButtonClickedRequest());
 
-        dispatch(actions.isLoginRequest({ email, password }));
+        try {
+            if (!email) {
+                throw new Error('The email can not be null!');
+            }
+
+            if (!password) {
+                throw new Error('The password can not be null!');
+            }
+
+            if (password.length <= 6) {
+                throw new Error('The password needs to be highter than 6!');
+            }
+
+            dispatch(actions.isLoginRequest({ email, password }));
+        } catch (err) {
+            toast.error(err.message);
+        }
     }
 
     return (
@@ -27,7 +43,7 @@ export default function Login() {
                 <label htmlFor="email">
                     E-mail:
                     <Input
-                        type="text"
+                        type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
