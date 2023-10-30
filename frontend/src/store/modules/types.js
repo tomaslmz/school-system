@@ -7,3 +7,5 @@ export const LOGIN_REQUEST = 'CLICKED_LOGIN_REQUEST';
 export const LOGIN_FAILURE = 'CLICKED_LOGIN_FAILURE';
 
 export const LOGOUT = 'CLICKED_LOGOUT';
+
+export const PERSIST_REHYDRATE = 'persist/REHYDRATE';
