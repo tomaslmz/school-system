@@ -4,19 +4,6 @@ import axios from '../../../services/axios';
 import * as actions from './actions';
 import * as types from '../types';
 
-const request = async () => {
-    try {
-        const payload = await axios({
-            url: 'tokens/create',
-            method: 'post',
-        });
-
-        return payload;
-    } catch (e) {
-        return e;
-    }
-};
-
 function* loginRequest({ payload }) {
     try {
         const response = yield call(axios.post, 'tokens/create', payload);
@@ -31,4 +18,4 @@ function* loginRequest({ payload }) {
     }
 }
 
-export default all([takeLatest(types.CLICKED_LOGIN_REQUEST, loginRequest)]);
+export default all([takeLatest(types.LOGIN_REQUEST, loginRequest)]);

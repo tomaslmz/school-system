@@ -11,18 +11,18 @@ const initialState = {
 // eslint-disable-next-line default-param-last
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.CLICKED_LOGIN_SUCCESS:
+        case types.LOGIN_SUCCESS:
             const newState = { ...state };
             newState.isLoggedIn = true;
             newState.token = action.payload.token;
             newState.user = action.payload.token;
             return newState;
-        case types.CLICKED_LOGIN_FAILURE:
+        case types.LOGIN_FAILURE:
             delete axios.defaults.headers.Authorization;
             return initialState;
-        case types.CLICKED_LOGIN_REQUEST:
+        case types.LOGIN_REQUEST:
             return state;
-        case types.CLICKED_LOGOUT:
+        case types.LOGOUT:
             delete axios.defaults.headers.Authorization;
             toast.error('You logged out!');
             return initialState;
