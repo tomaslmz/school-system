@@ -1,21 +1,27 @@
 import * as types from '../types';
 
-export function isLoginSuccess(payload) {
+export function loginSuccess(payload) {
     return {
         type: types.CLICKED_LOGIN_SUCCESS,
         payload,
     };
 }
 
-export function isLoginFailure() {
+export function loginFailure() {
     return {
         type: types.CLICKED_LOGIN_FAILURE,
     };
 }
 
-export function isLoginRequest(payload) {
+export function loginRequest(payload) {
     return {
         type: types.CLICKED_LOGIN_REQUEST,
         payload,
+    };
+}
+
+export function logout() {
+    return {
+        type: types.CLICKED_LOGOUT,
     };
 }

@@ -33,5 +33,6 @@ module.exports = {
         'no-unused-vars': 0,
         'no-case-declarations': 0,
         'jsx-a11y/label-has-associated-control': 0,
+        'react/jsx-no-bind': 0,
     },
 };

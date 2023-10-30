@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import * as types from '../types';
+import axios from '../../../services/axios';
 
 const initialState = {
     isLoggedIn: false,
@@ -17,11 +18,14 @@ export default function (state = initialState, action) {
             newState.user = action.payload.token;
             return newState;
         case types.CLICKED_LOGIN_FAILURE:
-            console.log('failure');
-            return state;
+            delete axios.defaults.headers.Authorization;
+            return initialState;
         case types.CLICKED_LOGIN_REQUEST:
-            console.log('request');
             return state;
+        case types.CLICKED_LOGOUT:
+            delete axios.defaults.headers.Authorization;
+            toast.error('You logged out!');
+            return initialState;
         default:
             return state;
     }

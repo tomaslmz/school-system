@@ -20,14 +20,14 @@ const request = async () => {
 function* loginRequest({ payload }) {
     try {
         const response = yield call(axios.post, 'tokens/create', payload);
-        yield put(actions.isLoginSuccess({ ...response.data }));
+        yield put(actions.loginSuccess({ ...response.data }));
 
         toast.success('You logged in!');
 
         axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
     } catch (e) {
         toast.error('Incorrect email or password');
-        yield put(actions.isLoginFailure());
+        yield put(actions.loginFailure());
     }
 }
 

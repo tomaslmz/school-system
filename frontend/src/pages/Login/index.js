@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
-import * as actions from '../../store/modules/login/actions';
+import * as actions from '../../store/modules/auth/actions';
 import { Title, Input, Form } from './styled';
 
 export default function Login() {
@@ -30,7 +30,7 @@ export default function Login() {
                 throw new Error('The password needs to be highter than 6!');
             }
 
-            dispatch(actions.isLoginRequest({ email, password }));
+            dispatch(actions.loginRequest({ email, password }));
         } catch (err) {
             toast.error(err.message);
         }

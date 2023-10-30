@@ -6,7 +6,7 @@ export default (reducers) => {
         {
             key: 'system-school',
             storage,
-            whiteList: ['example'],
+            whiteList: ['example', 'login'],
         },
         reducers
     );
