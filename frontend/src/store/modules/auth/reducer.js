@@ -15,7 +15,7 @@ export default function (state = initialState, action) {
             const newState = { ...state };
             newState.isLoggedIn = true;
             newState.token = action.payload.token;
-            newState.user = action.payload.token;
+            newState.user = action.payload.user;
             return newState;
         case types.LOGIN_FAILURE:
             delete axios.defaults.headers.Authorization;
