@@ -20,6 +20,26 @@ export function loginRequest(payload) {
     };
 }
 
+export function registerSuccess(payload) {
+    return {
+        type: types.REGISTER_SUCCESS,
+        payload,
+    };
+}
+
+export function registerFailure() {
+    return {
+        type: types.REGISTER_FAILURE,
+    };
+}
+
+export function registerRequest(payload) {
+    return {
+        type: types.REGISTER_REQUEST,
+        payload,
+    };
+}
+
 export function logout() {
     return {
         type: types.LOGOUT,

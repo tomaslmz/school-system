@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
-import { FaHome, FaSignInAlt, FaUserAlt } from 'react-icons/fa';
+import { FaHome, FaSignInAlt, FaPowerOff, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
@@ -22,13 +22,19 @@ export default function Header() {
                 <FaHome size={24} />
             </Link>
 
+            {!isLoggedIn ? (
+                <Link to="register">
+                    <FaUserAlt size={24} />
+                </Link>
+            ) : null}
+
             {isLoggedIn ? (
                 <Link to="/login" onClick={handleLogout}>
-                    <FaSignInAlt size={24} />
+                    <FaPowerOff size={24} />
                 </Link>
             ) : (
                 <Link to="/login">
-                    <FaUserAlt size={24} />
+                    <FaSignInAlt size={24} />
                 </Link>
             )}
         </Nav>

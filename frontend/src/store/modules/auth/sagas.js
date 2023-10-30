@@ -19,6 +19,18 @@ function* loginRequest({ payload }) {
     }
 }
 
+function* registerRequest({ payload }) {
+    try {
+        const response = yield call(axios.post, 'users/create', payload);
+        yield put(actions.registerSuccess({ ...response.data }));
+
+        toast.success('You created an account! Try to login.');
+    } catch {
+        toast.error('Some error occurred trying to create an account!');
+        yield put(actions.registerFailure());
+    }
+}
+
 function persistRehydrate({ payload }) {
     const token = get(payload, 'auth.token', '');
     if (!token) return;
@@ -28,4 +40,5 @@ function persistRehydrate({ payload }) {
 export default all([
     takeLatest(types.LOGIN_REQUEST, loginRequest),
     takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
+    takeLatest(types.REGISTER_REQUEST, registerRequest),
 ]);
