@@ -1,10 +1,13 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaUserCircle } from 'react-icons/fa';
 
 import axios from '../../services/axios';
-import { Form, Input, Title } from './styled';
+import { Form, Input, Title, Picture } from './styled';
 
 import { Container } from '../../styles/GlobalStyles';
 
@@ -12,6 +15,7 @@ export default function Student() {
     const { id } = useParams();
 
     const [name, setName] = useState('');
+    const [image, setImage] = useState('');
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState(new Date());
 
@@ -23,6 +27,10 @@ export default function Student() {
                 setName(response.data.name);
                 setEmail(response.data.email);
                 setBirthdate(response.data.birth_date.substring(0, 10));
+
+                if (response.data.Photos[0]) {
+                    setImage(response.data.Photos[0].url);
+                }
             } catch {
                 toast.error(
                     'Some error occurred trying to get data from student, try again later!'
@@ -37,6 +45,16 @@ export default function Student() {
         <Container>
             <Title>Edit student</Title>
             <Form>
+                <label htmlFor="image">
+                    <Picture>
+                        <input type="file" title="" id="file" />
+                        {image.length > 0 ? (
+                            <img src={image} crossOrigin="" />
+                        ) : (
+                            <FaUserCircle size={100} />
+                        )}
+                    </Picture>
+                </label>
                 <label htmlFor="name">
                     Name:
                     <Input

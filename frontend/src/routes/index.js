@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history/cjs/history.min';
 import MyRoute from './MyRoute';
 
 import Login from '../pages/Login';

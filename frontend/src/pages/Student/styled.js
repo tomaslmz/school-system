@@ -20,3 +20,32 @@ export const Form = styled.form`
     gap: 20px;
     flex-direction: column;
 `;
+
+export const Picture = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    input {
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        opacity: 0;
+        background-color: black;
+    }
+
+    input[type='file']::-webkit-file-upload-button {
+        opacity: 0;
+    }
+
+    input:hover {
+        opacity: 0.5;
+    }
+`;
