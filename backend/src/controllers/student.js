@@ -40,6 +40,33 @@ class Student {
     }
   }
 
+  async search(req, res) {
+    try {
+      const { id } = req.params;
+
+      if(!id) {
+        return res.status(400).json({
+          errors: ['The id is needed to search the user!'],
+        });
+      }
+
+      const student = await Students.findByPk(id, {
+        attributes: ['id', 'name', 'email', 'birth_date'],
+        order: [['id', 'DESC'], [Photos, 'id', 'DESC']],
+        include: {
+          model: Photos,
+          attributes: ['url', 'filename'],
+        },
+      });
+
+      return res.json(student);
+    } catch(e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  }
+
   async delete(req, res) {
     try {
       if(!req.params.id) {
