@@ -61,3 +61,8 @@ export const Data = styled.section`
 `;
 
 export const Options = styled.section``;
+
+export const Message = styled.p`
+    color: red;
+    font-weight: bolder;
+`;

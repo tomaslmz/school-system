@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
-import { Container, StudentContainer, Picture, Data } from './styled';
+import { Container, StudentContainer, Picture, Message } from './styled';
 import axios from '../../services/axios';
 
 export default function Home() {
@@ -50,40 +50,50 @@ export default function Home() {
 
     return (
         <Container>
-            {students.map((student, index) => (
-                <StudentContainer id={String(student.id)}>
-                    <Picture>
-                        {get(student, 'Photos[0].url', false) ? (
-                            <img
-                                src={student.Photos[0].url}
-                                alt=""
-                                crossOrigin=""
-                            />
-                        ) : (
-                            <FaUserCircle size={36} />
-                        )}
-                    </Picture>
-                    <p>{student.name}</p>
-                    <p>{student.email}</p>
+            {students.length > 0 ? (
+                students.map((student, index) => (
+                    <StudentContainer id={String(student.id)} key={student.id}>
+                        <Picture>
+                            {get(student, 'Photos[0].url', false) ? (
+                                <img
+                                    src={student.Photos[0].url}
+                                    alt=""
+                                    crossOrigin=""
+                                />
+                            ) : (
+                                <FaUserCircle size={36} />
+                            )}
+                        </Picture>
+                        <p>{student.name}</p>
+                        <p>{student.email}</p>
 
-                    <FaPenSquare color="#C3073F" cursor="pointer" size={16} />
+                        <FaPenSquare
+                            color="#C3073F"
+                            cursor="pointer"
+                            size={16}
+                        />
 
-                    <FaWindowClose
-                        color="#C3073F"
-                        cursor="pointer"
-                        size={16}
-                        onClick={handleAskDelete}
-                    />
+                        <FaWindowClose
+                            color="#C3073F"
+                            cursor="pointer"
+                            size={16}
+                            onClick={handleAskDelete}
+                        />
 
-                    <FaExclamation
-                        color="black"
-                        cursor="pointer"
-                        size={16}
-                        display="none"
-                        onClick={(e) => handleDelete(e, index, student.id)}
-                    />
-                </StudentContainer>
-            ))}
+                        <FaExclamation
+                            color="black"
+                            cursor="pointer"
+                            size={16}
+                            display="none"
+                            onClick={(e) => handleDelete(e, index, student.id)}
+                        />
+                    </StudentContainer>
+                ))
+            ) : (
+                <Message>
+                    At the moment, the system doesn&apos;t have any student!
+                </Message>
+            )}
         </Container>
     );
 }
