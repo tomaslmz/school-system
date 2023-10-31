@@ -1,5 +1,8 @@
 import Sequelize, { Model } from 'sequelize';
+import dotenv from 'dotenv';
 import Students from './Students';
+
+dotenv.config();
 
 export default class Photos extends Model {
   static init(sequelize) {
@@ -26,7 +29,7 @@ export default class Photos extends Model {
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `http://localhost:3000/images/${this.getDataValue('filename')}`;
+            return `http://${process.env.HOST}:${process.env.PORT}/images/${this.getDataValue('filename')}`;
           },
         },
       },

@@ -25,7 +25,8 @@ class App {
     this.app.use(cors(corsOptions));
     this.app.use(helmet());
     this.app.use(express.json());
-    this.app.use(express.static(resolve(__dirname, 'uploads')));
+    this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
+    // this.app.use(express.static(`${__dirname}/uploads`));
   }
 
   routes() {
@@ -34,6 +35,7 @@ class App {
     this.app.use('/tokens/', tokenRoutes);
     this.app.use('/students/', studentRoutes);
     this.app.use('/photos/', photoRoutes);
+    this.app.use('/images', express.static(resolve(__dirname, 'uploads/images')));
   }
 }
 
