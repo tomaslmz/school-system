@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { primaryColor, primaryColorLight } from '../../config/colors';
 
 export const Container = styled.section`

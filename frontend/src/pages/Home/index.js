@@ -67,16 +67,13 @@ export default function Home() {
                     <p>{student.email}</p>
 
                     <FaPenSquare color="#C3073F" cursor="pointer" size={16} />
-                    <Link
-                        to={`http:localhost:3001/students/delete/${student.id}`}
+
+                    <FaWindowClose
+                        color="#C3073F"
+                        cursor="pointer"
+                        size={16}
                         onClick={handleAskDelete}
-                    >
-                        <FaWindowClose
-                            color="#C3073F"
-                            cursor="pointer"
-                            size={16}
-                        />
-                    </Link>
+                    />
 
                     <FaExclamation
                         color="black"
