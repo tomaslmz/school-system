@@ -18,6 +18,7 @@ export default function Student() {
     const [image, setImage] = useState('');
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState(new Date());
+    let photoId = null;
 
     useEffect(() => {
         async function getData() {
@@ -30,6 +31,7 @@ export default function Student() {
 
                 if (response.data.Photos[0]) {
                     setImage(response.data.Photos[0].url);
+                    photoId = response.data.Photos[0].id;
                 }
             } catch {
                 toast.error(
@@ -41,18 +43,48 @@ export default function Student() {
         getData();
     }, []);
 
+    async function handleChangeImage(e) {
+        if (e.target.files && e.target.files[0]) {
+            setImage(URL.createObjectURL(e.target.files[0]));
+
+            try {
+                const formData = new FormData();
+                formData.append(
+                    'photo',
+                    URL.createObjectURL(e.target.files[0])
+                );
+                formData.append('student_id', 2);
+
+                console.log(id);
+                if (photoId) {
+                    await axios.delete(`/photos/remove/${photoId}`);
+                }
+
+                await axios.post('/photos/store', formData);
+
+                toast.success('Your photo is updated!');
+            } catch (err) {
+                console.log(err);
+                toast.error(
+                    'Some error occurred trying to update your photo, try again later!'
+                );
+            }
+        }
+    }
+
     return (
         <Container>
             <Title>Edit student</Title>
             <Form>
                 <label htmlFor="image">
                     <Picture>
-                        <input type="file" title="" id="file" />
-                        {image.length > 0 ? (
-                            <img src={image} crossOrigin="" />
-                        ) : (
-                            <FaUserCircle size={100} />
-                        )}
+                        <input
+                            type="file"
+                            title=""
+                            id="file"
+                            onChange={(e) => handleChangeImage(e)}
+                        />
+                        <img src={image} crossOrigin="" />
                     </Picture>
                 </label>
                 <label htmlFor="name">

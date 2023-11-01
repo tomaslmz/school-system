@@ -87,6 +87,7 @@ export default function Home() {
                                 onClick={handleAskDelete}
                             />
                         </Link>
+                        {/* Não está dando para apagar */}
 
                         <Link to={`/students/delete/${student.id}`}>
                             <FaExclamation
