@@ -29,7 +29,7 @@ class Student {
         order: [['id', 'DESC'], [Photos, 'id', 'ASC']],
         include: {
           model: Photos,
-          attributes: ['url', 'filename'],
+          attributes: ['id', 'url', 'filename'],
         },
       });
       return res.json(students);

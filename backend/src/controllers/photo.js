@@ -1,4 +1,5 @@
 import multer from 'multer';
+import fs from 'fs';
 import multerConfig from '../config/multer';
 import Photos from '../models/Photos';
 
@@ -25,6 +26,29 @@ class Photo {
         });
       }
     });
+  }
+
+  async remove(req, res) {
+    try {
+      const { id } = req.params;
+      const photo = await Photos.findByPk(id);
+
+      if(!photo) {
+        return res.status(400).json("The photo doesn't exists!");
+      }
+
+      //   await Photos.destroy({
+      //     where: {
+      //       id,
+      //     },
+      //   });
+
+      fs.unlink(`./uploads/images/${photo.filename}`, (e) => console.log(e));
+
+      return res.json(`The photo with ID ${id} was deleted!`);
+    } catch(e) {
+      return res.status(400).json(e);
+    }
   }
 }
 
