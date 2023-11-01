@@ -29,6 +29,17 @@ export const StudentContainer = styled.section`
     flex-wrap: wrap;
     padding-bottom: 10px;
     border-bottom: 1px solid #dedede;
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar-track {
+    }
+
+    ::-webkit-scrollbar-thumb {
+    }
 `;
 
 export const Button = styled.button`
@@ -65,4 +76,14 @@ export const Options = styled.section``;
 export const Message = styled.p`
     color: red;
     font-weight: bolder;
+`;
+
+export const Name = styled.p`
+    width: 113px;
+    overflow: scroll;
+`;
+
+export const Email = styled.p`
+    width: 193px;
+    overflow: scroll;
 `;

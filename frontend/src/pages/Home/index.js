@@ -12,7 +12,14 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Container, StudentContainer, Picture, Message } from './styled';
+import {
+    Container,
+    StudentContainer,
+    Picture,
+    Message,
+    Name,
+    Email,
+} from './styled';
 import axios from '../../services/axios';
 
 export default function Home() {
@@ -65,8 +72,8 @@ export default function Home() {
                                 <FaUserCircle size={36} />
                             )}
                         </Picture>
-                        <p>{student.name}</p>
-                        <p>{student.email}</p>
+                        <Name width="113px">{student.name}</Name>
+                        <Email width="193px">{student.email}</Email>
 
                         <Link
                             to={`student/${student.id}`}
@@ -79,27 +86,27 @@ export default function Home() {
                             />
                         </Link>
 
-                        <Link to={`/students/delete/${student.id}`}>
+                        <Link
+                            to={`/students/delete/${student.id}`}
+                            onClick={handleAskDelete}
+                        >
                             <FaWindowClose
                                 color="#C3073F"
                                 cursor="pointer"
                                 size={16}
-                                onClick={handleAskDelete}
                             />
                         </Link>
                         {/* Não está dando para apagar */}
 
-                        <Link to={`/students/delete/${student.id}`}>
-                            <FaExclamation
-                                color="black"
-                                cursor="pointer"
-                                size={16}
-                                display="none"
-                                onClick={(e) =>
-                                    handleDelete(e, index, student.id)
-                                }
-                            />
-                        </Link>
+                        {/* <Link to={`/students/delete/${student.id}`}> */}
+                        <FaExclamation
+                            color="black"
+                            cursor="pointer"
+                            size={16}
+                            display="none"
+                            onClick={(e) => handleDelete(e, index, student.id)}
+                        />
+                        {/* </Link> */}
                     </StudentContainer>
                 ))
             ) : (
