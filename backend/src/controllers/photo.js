@@ -37,11 +37,11 @@ class Photo {
         return res.status(400).json("The photo doesn't exists!");
       }
 
-      //   await Photos.destroy({
-      //     where: {
-      //       id,
-      //     },
-      //   });
+      await Photos.destroy({
+        where: {
+          id,
+        },
+      });
 
       fs.unlink(`./uploads/images/${photo.filename}`, (e) => console.log(e));
 
