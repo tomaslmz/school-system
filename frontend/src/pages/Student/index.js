@@ -15,7 +15,7 @@ export default function Student() {
     const { id } = useParams();
 
     const [name, setName] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState(new Date());
     let photoId = null;
@@ -49,22 +49,22 @@ export default function Student() {
 
             try {
                 const formData = new FormData();
-                formData.append(
-                    'photo',
-                    URL.createObjectURL(e.target.files[0])
-                );
-                formData.append('student_id', 2);
+                formData.append('photo', e.target.files[0]);
 
-                console.log(id);
+                formData.append('student_id', id);
+
                 if (photoId) {
                     await axios.delete(`/photos/remove/${photoId}`);
                 }
 
-                await axios.post('/photos/store', formData);
+                await axios.post('/photos/store', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
 
                 toast.success('Your photo is updated!');
             } catch (err) {
-                console.log(err);
                 toast.error(
                     'Some error occurred trying to update your photo, try again later!'
                 );
