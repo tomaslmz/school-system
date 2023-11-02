@@ -55,7 +55,7 @@ class Student {
         order: [['id', 'DESC'], [Photos, 'id', 'DESC']],
         include: {
           model: Photos,
-          attributes: ['url', 'filename'],
+          attributes: ['id', 'url', 'filename'],
         },
       });
 
