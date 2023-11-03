@@ -18,7 +18,7 @@ export default function Student() {
     const [image, setImage] = useState(null);
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState(new Date());
-    let photoId = null;
+    const [photoId, setPhotoId] = useState(0);
 
     useEffect(() => {
         async function getData() {
@@ -31,7 +31,7 @@ export default function Student() {
 
                 if (response.data.Photos[0]) {
                     setImage(response.data.Photos[0].url);
-                    photoId = response.data.Photos[0].id;
+                    setPhotoId(response.data.Photos[0].id);
                 }
             } catch {
                 toast.error(
@@ -53,7 +53,7 @@ export default function Student() {
 
                 formData.append('student_id', id);
 
-                if (photoId) {
+                if (photoId > 0) {
                     await axios.delete(`/photos/remove/${photoId}`);
                 }
 
@@ -72,10 +72,38 @@ export default function Student() {
         }
     }
 
+    async function handleEdit(e) {
+        e.preventDefault();
+
+        try {
+            if (!name) {
+                throw new Error('The name can not be null!');
+            }
+
+            if (!email) {
+                throw new Error('The email can not be null!');
+            }
+
+            if (!birthdate) {
+                throw new Error('The birthdate can not be null!');
+            }
+
+            axios.patch(`/students/update/${id}`, {
+                name,
+                email,
+                birth_date: birthdate,
+            });
+
+            toast.success('The student has been updated successfully!');
+        } catch (err) {
+            toast.error(err.message);
+        }
+    }
+
     return (
         <Container>
             <Title>Edit student</Title>
-            <Form>
+            <Form onSubmit={(e) => handleEdit(e)}>
                 <label htmlFor="image">
                     <Picture>
                         <input
@@ -114,6 +142,7 @@ export default function Student() {
                         type="date"
                     />
                 </label>
+                <button type="submit">Edit</button>
             </Form>
         </Container>
     );

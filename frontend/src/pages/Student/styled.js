@@ -37,8 +37,10 @@ export const Picture = styled.div`
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        cursor: pointer;
         opacity: 0;
         background-color: black;
+        transition: opacity 150ms linear;
     }
 
     input[type='file']::-webkit-file-upload-button {
