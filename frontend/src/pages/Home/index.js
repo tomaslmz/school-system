@@ -58,6 +58,9 @@ export default function Home() {
 
     return (
         <Container>
+            <Link to="/student/new">
+                <button type="button">Add a new student</button>
+            </Link>
             {students.length > 0 ? (
                 students.map((student, index) => (
                     <StudentContainer id={String(student.id)} key={student.id}>
@@ -76,7 +79,7 @@ export default function Home() {
                         <Email width="193px">{student.email}</Email>
 
                         <Link
-                            to={`student/${student.id}`}
+                            to={`student/edit/${student.id}`}
                             style={{ textDecoration: 'none' }}
                         >
                             <FaPenSquare

@@ -26,6 +26,7 @@ class App {
     this.app.use(helmet());
     this.app.use(express.json());
     this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
+    this.app.use('/static/', express.static(resolve(__dirname, '..', 'uploads', 'static')));
     // this.app.use(express.static(`${__dirname}/uploads`));
   }
 
