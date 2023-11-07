@@ -15,7 +15,9 @@ export default function Student() {
     const { id } = useParams();
 
     const [name, setName] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState(
+        'http://localhost:3001/static/default-profile.png'
+    );
     const [email, setEmail] = useState('');
     const [birthdate, setBirthdate] = useState(new Date());
     const [photoId, setPhotoId] = useState(0);
